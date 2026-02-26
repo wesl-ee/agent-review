@@ -1,0 +1,36 @@
+agent-review
+============
+
+Locally review code produced by a coding agent before committing upstream.
+Enables human-in-the-loop iteration over agent-produced code with 
+
+![agent-review ui](./img/readme-1.jpeg)
+
+Installation
+------------
+
+```
+git clone git@github.com:wesl-ee/agent-review.git
+cd agent-review
+npm install
+npm link
+
+# verify
+agent-review --help
+```
+
+Workflow
+--------
+
+Below is a snippet from my AGENTS.MD file. Tailor to your needs.
+
+```
+## agent-review
+- use if I request to review your code. to start: agent-review trigger . provide the URL
+- to review / reply: agent-review comments <review-id>, agent-review resolve <review-id> <comment-id>
+```
+
+LICENSE
+-------
+
+MIT License (available under `/LICENSE`)

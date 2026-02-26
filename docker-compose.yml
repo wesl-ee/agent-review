@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agent-review:local
+    container_name: agent-review-app
+    environment:
+      AGENT_REVIEW_ROOT: /data/reviews
+      PORT: "3421"
+      HOSTNAME: "0.0.0.0"
+    ports:
+      - "127.0.0.1:3421:3421"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3421/api/health').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+      start_period: 3s
+    volumes:
+      - agent_review_data:/data/reviews
+    restart: unless-stopped
+
+volumes:
+  agent_review_data:

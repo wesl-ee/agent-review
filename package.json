@@ -1,0 +1,36 @@
+{
+  "name": "agent-review",
+  "version": "1.0.0",
+  "description": "local diff review app for agent workflows",
+  "bin": {
+    "agent-review": "bin/agent-review"
+  },
+  "scripts": {
+    "dev": "next dev -p 3421",
+    "build": "next build",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "start": "next start -p 3421 -H 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build:cli",
+    "prepack": "npm run build:cli",
+    "agent-review": "node dist/bin/agent-review.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "mime-types": "^3.0.2",
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^3.0.1",
+    "@types/node": "^25.3.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}
