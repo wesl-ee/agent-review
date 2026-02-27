@@ -1,16 +1,24 @@
 #!/usr/bin/env node
 import crypto from 'node:crypto';
 import { execFile } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
 const execFileP = promisify(execFile);
 const CONTAINER_PORT = 3421;
 const hostPort = Number(process.env.AGENT_REVIEW_PORT || '3421');
 const containerName = process.env.AGENT_REVIEW_CONTAINER || 'agent-review-app';
-const image = process.env.AGENT_REVIEW_IMAGE || 'ghcr.io/wesl-ee/agent-review:latest';
+const thisFile = fileURLToPath(import.meta.url);
+const pkgJsonPath = path.resolve(path.dirname(thisFile), '../../package.json');
+const pkgVersion = existsSync(pkgJsonPath)
+  ? (JSON.parse(readFileSync(pkgJsonPath, 'utf8')) as { version?: string }).version
+  : undefined;
+const image =
+  process.env.AGENT_REVIEW_IMAGE || `ghcr.io/wesl-ee/agent-review:${pkgVersion || 'latest'}`;
 const dataDir = process.env.AGENT_REVIEW_DATA || path.join(os.homedir(), '.agent-reviews');
 const apiBase = (process.env.AGENT_REVIEW_API_BASE || `http://127.0.0.1:${hostPort}`).replace(/\/+$/, '');
 

@@ -7,6 +7,15 @@ code overall :)
 
 ![agent-review ui](./img/readme-1.jpeg)
 
+Prerequisites
+-------------
+
+Ensure these packages / daemons are installed locally:
+
+- node + npm
+- Docker daemon + cli
+- git
+
 Installation
 ------------
 

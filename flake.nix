@@ -12,7 +12,7 @@
       in {
         packages.default = pkgs.buildNpmPackage {
           pname = "agent-review";
-          version = "1.0.0";
+          version = "0.1.0";
           src = ./.;
 
           npmDepsHash = "sha256-wXcmZUlbiBzB1UakquAOmsIcpvyUWWPvVdOFi1NDbw0=";
