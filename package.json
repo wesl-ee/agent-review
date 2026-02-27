@@ -2,9 +2,7 @@
   "name": "agent-review",
   "version": "0.1.0",
   "description": "local diff review app for agent workflows",
-  "bin": {
-    "agent-review": "./dist/bin/agent-review.js"
-  },
+  "bin": "dist/bin/agent-review.js",
   "files": [
     "dist/",
     "README.md",
