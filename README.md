@@ -20,7 +20,7 @@ Installation
 ------------
 
 ```bash
-npm install -g github:wesl-ee/agent-review#v0.1.0
+npm install -g https://github.com/wesl-ee/agent-review/releases/download/v0.1.0/agent-review-0.1.0.tgz
 
 # verify
 agent-review --help
