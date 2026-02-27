@@ -1,8 +1,9 @@
 agent-review
 ============
 
-Locally review code produced by a coding agent before committing upstream.
-Enables human-in-the-loop iteration over agent-produced code with 
+Locally review code from a coding agent before committing upstream. Enables
+infinite **human-in-the-loop** iteration over agent-produced code for better
+code overall :)
 
 ![agent-review ui](./img/readme-1.jpeg)
 
