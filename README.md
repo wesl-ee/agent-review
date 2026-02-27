@@ -12,12 +12,21 @@ Prerequisites
 
 Ensure these packages / daemons are installed locally:
 
-- node + npm
+- node + npm + typescript
 - Docker daemon + cli
 - git
 
 Installation
 ------------
+
+Preferred (npm):
+
+```bash
+npm install -g agent-review
+agent-review --help
+```
+
+From source:
 
 ```
 git clone git@github.com:wesl-ee/agent-review.git
@@ -27,6 +36,14 @@ npm link
 
 # verify
 agent-review --help
+```
+
+Release flow (npm + git tag):
+
+```bash
+npm version patch   # or minor/major
+git push --follow-tags
+npm publish
 ```
 
 Workflow

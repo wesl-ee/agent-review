@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "description": "local diff review app for agent workflows",
   "bin": {
-    "agent-review": "bin/agent-review"
+    "agent-review": "./dist/bin/agent-review.js"
   },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "next dev -p 3421",
     "build": "next build",
-    "build:cli": "tsc -p tsconfig.cli.json",
+    "build:cli": "tsc -p tsconfig.cli.json && chmod +x dist/bin/agent-review.js",
     "start": "next start -p 3421 -H 0.0.0.0",
     "typecheck": "tsc --noEmit",
     "prepare": "npm run build:cli",
     "prepack": "npm run build:cli",
+    "prepublishOnly": "npm run build:cli",
     "agent-review": "node dist/bin/agent-review.js"
   },
   "keywords": [],

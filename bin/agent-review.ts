@@ -54,6 +54,15 @@ async function checkHealth() {
   return res.ok;
 }
 
+async function ensureDockerReady() {
+  const dockerHost = process.env.DOCKER_HOST ? ` (${process.env.DOCKER_HOST})` : '';
+  try {
+    await run('docker', ['info']);
+  } catch {
+    throw new Error(`docker daemon unavailable${dockerHost}; start docker and retry`);
+  }
+}
+
 async function ensureLocalServer() {
   if (process.env.AGENT_REVIEW_API_BASE) {
     if (!(await checkHealth().catch(() => false))) {
@@ -64,6 +73,7 @@ async function ensureLocalServer() {
 
   if (await checkHealth().catch(() => false)) return;
 
+  await ensureDockerReady();
   await fs.mkdir(dataDir, { recursive: true });
   const running = await run('docker', ['inspect', '-f', '{{.State.Running}}', containerName])
     .then(({ stdout }) => stdout.trim() === 'true')
